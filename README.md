@@ -49,42 +49,44 @@ A Django REST API backend built to support a mobile app that helps users identif
 
 ---
 
-🔐 Authentication
+## 🔐 Authentication
 
 This project uses JWT authentication.
--> Obtain token:
+* Obtain token:
       POST /api/token/
      {
         "username": "your_username",
         "password": "your_password"
      }
--> Use the token: Add to headers:
+* Use the token: Add to headers:
       Authorization: Bearer <access_token>
 
 ---
 
-📚 API Endpoints
-Method	Endpoint	Description
-POST	/api/users/	Register a new user (name, phone number, password, and optional email)
-POST	/api/token/	Obtain access and refresh JWT tokens
-POST	/api/token/refresh/	Refresh the JWT access token
-GET	/api/contacts/	Get the list of authenticated user's contacts
-POST	/api/contacts/	Add a new contact to the authenticated user
-POST	/api/contacts/{id}/mark_as_spam/	Mark a contact (by ID) as spam
-GET	/api/search/name/?q=<name>	Search for contacts by full or partial name
-GET	/api/search/number/?q=<phone_number>	Search by phone number. Returns results from global database
+## 📚 API Endpoints
+
+| **Method**     | **Endpoint**                         | **Description**						                                       |
+|----------------|--------------------------------------|------------------------------------------------------------------------|
+| POST     	     |  /api/users/              		     | Register a new user (name, phone number, password, and optional email) |
+| POST  	        |  /api/token/     			           | Obtain access and refresh JWT tokens 					                     |
+| POST      	  |  /api/token/refresh/    		        | Obtain access and refresh JWT tokens  				                     |
+| GET  		     |  /api/contacts/        		        | Get the list of authenticated user's contacts 			                  |
+| POST           |  /api/contacts/			              | Add a new contact to the authenticated user	   			               |
+| POST           |  /api/contacts/{id}/mark_as_spam/	  | Mark a contact (by ID) as spam					                           |
+| GET            |  /api/search/name/?q=<name>		     | Search for contacts by full or partial name				                  |
+| GET            |  /api/search/number/?q=<phone_number>| Search by phone number. Returns results from global database		      |
 
 📌 All routes are protected — must be logged in using JWT.
 
 ---
 
-🧪 Sample Data Script
-A management command is included to generate random users and contacts:
+## 🧪 Sample Data Script
+* A management command is included to generate random users and contacts:
     python manage.py populatedb
 
 ---
 
-🧾 Requirements
+## 🧾 Requirements
     Django==4.2.3
     djangorestframework==3.14.0
     djangorestframework-simplejwt==5.2.2
@@ -92,7 +94,7 @@ A management command is included to generate random users and contacts:
 
 ---
 
-📄 License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
