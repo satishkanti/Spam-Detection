@@ -64,15 +64,15 @@ This project uses JWT authentication.
 ---
 
 📚 API Endpoints
-Method	Endpoint	                            Description
-POST	  /api/users/	                          Register a new user (name, phone number, password, and optional email)
-POST	  /api/token/	                          Obtain access and refresh JWT tokens
-POST	  /api/token/refresh/	                  Refresh the JWT access token
-GET	    /api/contacts/	                      Get the list of authenticated user's contacts
-POST	  /api/contacts/	                      Add a new contact to the authenticated user
-POST	  /api/contacts/{id}/mark_as_spam/	    Mark a contact (by ID) as spam
-GET	    /api/search/name/?q=<name>	          Search for contacts by full or partial name
-GET	    /api/search/number/?q=<phone_number>	Search by phone number. Returns results from global database
+Method	Endpoint	Description
+POST	/api/users/	Register a new user (name, phone number, password, and optional email)
+POST	/api/token/	Obtain access and refresh JWT tokens
+POST	/api/token/refresh/	Refresh the JWT access token
+GET	/api/contacts/	Get the list of authenticated user's contacts
+POST	/api/contacts/	Add a new contact to the authenticated user
+POST	/api/contacts/{id}/mark_as_spam/	Mark a contact (by ID) as spam
+GET	/api/search/name/?q=<name>	Search for contacts by full or partial name
+GET	/api/search/number/?q=<phone_number>	Search by phone number. Returns results from global database
 
 📌 All routes are protected — must be logged in using JWT.
 
@@ -89,4 +89,11 @@ A management command is included to generate random users and contacts:
     djangorestframework==3.14.0
     djangorestframework-simplejwt==5.2.2
     drf-yasg==1.21.5
+
+---
+
+📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
