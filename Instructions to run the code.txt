@@ -1,0 +1,153 @@
+Instruction to run the code 
+
+-----------------------------------------
+
+Prerequisites
+
+1. Python: Ensure you have Python installed (preferably Python 3.8 or higher). You can download Python from python.org.
+
+2. pip: Ensure you have pip installed for managing Python packages. pip is usually installed with Python.
+
+-----------------------------------------
+
+Steps to Run the Django Project
+
+1. Navigate to the project directory: 
+	-> cd /path/to/your/project
+
+2. Install Dependencies from the requirements.txt file.
+
+3. Configure the Database
+	
+	(i) Navigate to the project directory (if not already there). 
+
+	(ii) Make database migrations:
+		-> python manage.py makemigrations
+		-> python manage.py migrate
+	
+4. Create a Superuser
+	
+	(i) Create a superuser to access the Django admin:
+		-> python manage.py createsuperuser
+
+	(ii) Follow the prompts to set up the superuser account.
+
+5. Run the Development Server
+
+	(i) Start the Django development server:
+		-> python manage.py runserver
+	
+	(ii) Access the application in your web browser at 'http://127.0.0.1:8000/'.
+
+6. Access the Admin Interface
+
+	(i) Navigate to the admin interface:
+		-> 'http://127.0.0.1:8000/admin/'
+	
+	(ii) Log in with the superuser credentials you created earlier.
+
+-------------------------------------------------
+
+Testing API Endpoints
+Using Postman
+
+1. User Registration
+	
+	(i) Open Postman and create a new 'POST' request.
+
+	(ii) Enter the URL: 'http://127.0.0.1:8000/api/users/'
+
+	(iii) Go to the 'Body' tab and select 'raw' and 'JSON' from the dropdown.
+
+	(iv) Add the following JSON data:
+		{
+   			 "username": "divya",
+    			 "phone_number": "1234567890",
+    			 "password": "divya@21"
+		}
+	(v) Click 'Send'. You should get a response with the created user details (without the password).
+
+2. User Login
+
+	(i) Create a new 'POST' request.
+
+	(ii) Enter the URL: 'http://127.0.0.1:8000/api/token/'
+
+	(iv) Go to the 'Body' tab and select 'raw' and 'JSON' from the dropdown.
+
+	(v) Add the following JSON data:
+		{
+    			"username": "divya",
+    			"password": "divya@21"
+		}
+
+	(v) Click 'Send'. You should get a response with 'access' and 'refresh' tokens.
+
+3. Add Contacts
+
+	(i) Create a new 'POST' request.
+
+	(ii) Enter the URL: 'http://127.0.0.1:8000/api/contacts/'
+
+	(iii) Go to the 'Authorization' tab, select 'Bearer Token' and paste the 'access' token obtained from the login response. And also 
+	      go to the 'Headers' tab, enter key as 'Authorization' and value as 'Bearer <access-token>' obtained from the login 	        	      response.
+	      NOTE - replace <access-token> with the 'access' token obtained from the login response.
+
+	(iv) Go to the 'Body' tab and select 'raw' and 'JSON' from the dropdown.
+
+	(v) Add the following JSON data:
+		{
+    			"name": "Reema",
+    			"phone_number": "0987651241",
+    			"is_spam": false (optional)
+		}
+
+	(vi) Click 'Send'. You should get a response with the created contact details.
+
+
+4. Mark Contact as Spam
+
+	(i) First, get the contact ID. Create a new 'GET' request to retrieve all contacts.
+
+	(ii) Enter the URL: 'http://127.0.0.1:8000/api/contacts/'
+
+	(iii) Go to the 'Authorization' tab, select 'Bearer Token' and paste the 'access' token obtained from the login response. And also 
+	      go to the 'Headers' tab, enter key as 'Authorization' and value as 'Bearer <access-token>' obtained from the login 	        	      response.
+	      NOTE - replace <access-token> with the 'access' token obtained from the login response.
+
+	(iv) Click 'Send'. You should get a list of contacts. Note the id of the contact you want to mark as spam.
+
+	(v) Create a new 'POST' request.
+
+	(vi) Enter the URL: 'http://127.0.0.1:8000/api/contacts/{id}/mark_as_spam/', (replace {id} with the contact ID).
+
+	(vii) Go to the 'Authorization' tab, select 'Bearer Token' and paste the 'access' token obtained from the login response. And also 
+	      go to the 'Headers' tab, enter key as 'Authorization' and value as 'Bearer <access-token>' obtained from the login 	        	      response.
+	      NOTE - replace <access-token> with the 'access' token obtained from the login response.
+
+	(viii) Click 'Send'. You should get a response indicating the contact was marked as spam. 
+
+5. Search Contacts by Name
+
+	(i) Create a new 'GET' request.
+
+	(ii) Enter the URL: 'http://127.0.0.1:8000/api/search/?search=Reema'
+
+	(iii) Go to the 'Authorization' tab, select 'Bearer Token' and paste the 'access' token obtained from the login response. And also 
+	      go to the 'Headers' tab, enter key as 'Authorization' and value as 'Bearer <access-token>' obtained from the login 	        	      response.
+	      NOTE - replace <access-token> with the 'access' token obtained from the login response.
+
+	(iv) Click 'Send'. You should get a list of contacts matching the search query.
+
+6. Search Contacts by Phone Number
+
+	(i) Create a new 'GET' request.
+
+	(ii) Enter the URL: 'http://127.0.0.1:8000/api/search/?search=0987651241'
+
+	(iii) Go to the 'Authorization' tab, select 'Bearer Token' and paste the 'access' token obtained from the login response. And also 
+	      go to the 'Headers' tab, enter key as 'Authorization' and value as 'Bearer <access-token>' obtained from the login 	        	      response.
+	      NOTE - replace <access-token> with the 'access' token obtained from the login response.
+
+	(iv) Click 'Send'. You should get a list of contacts matching the search query.
+
